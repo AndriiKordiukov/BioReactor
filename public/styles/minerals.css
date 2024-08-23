@@ -1,0 +1,113 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  width: 100%;
+  padding: 20px;
+  background-color: #2196F3;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header input {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+}
+
+aside {
+  width: 200px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  /* display: flex; */
+  top: 80px;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.mineral-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Card takes full width */
+  max-width: 600px; /* Limit maximum width */
+  text-align: center;
+  transition: transform 0.2s
+}
+
+.mineral-card:hover {
+  transform: scale(1.05);
+}
+
+.mineral-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.mineral-card h3 {
+  margin: 15px 0;
+}
+
+.mineral-card p {
+  padding: 0 15px;
+  margin-bottom: 15px;
+  color: #666;
+}
+
+.mineral-card a {
+  text-decoration: none;
+  color: #2196F3;
+  display: block;
+  padding: 10px 0;
+  font-weight: bold;
+}
+
+
+/* ================== Mobile version adjustments ======================= */
+@media (max-width: 768px) {
+  aside {
+      width: 100%;
+      position: relative;
+      top: 0;
+      height: auto;
+      padding: 10px;
+      box-shadow: none;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+  }
+
+  main {
+      padding: 10px;
+  }
+
+  .vitamin-card {
+      width: calc(100% - 40px);
+  }
+}

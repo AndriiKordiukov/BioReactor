@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./icons/favicon.png">
+    <title>BioReactor: Minerals</title>
+    <link rel="stylesheet" href="./styles/nutrients.css">
+    <script src="./scripts/mineralList.js"></script>
+    <script src="./scripts/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <h3>Filters</h3>
+            <ul id="filters">
+                <li><button onclick="filterVitamins('water-soluble')">Water-soluble</button></li>
+                <li><button onclick="filterVitamins('fat-soluble')">Fat-soluble</button></li>
+                <!-- Add more filters as needed -->
+            </ul>
+        </aside>
+        <main id="nutrient-list">
+            <!-- Mineral cards will be loaded here -->
+        </main>
+        <img src="./images/minerals/magnesium.webp" alt="Mg">
+    </div>
+
+</body>
+</html>

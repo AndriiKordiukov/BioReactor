@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Data Display</title>
+  <style>
+    .card {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Minerals</h1>
+  <div id="data-container">
+    <!-- Здесь будут отображаться карточки с данными -->
+  </div>
+
+  <script>
+async function fetchAndDisplayData() {
+  try {
+    const response = await fetch("http://localhost:8080/minerals", {
+      method: "GET"
+    });
+    const jsonData = await response.json();
+    console.log(jsonData);
+
+    // Очищаем контейнер для данных
+    const container = document.getElementById('data-container');
+    container.innerHTML = '';
+
+    // Проверяем, является ли jsonData объектом с несколькими результатами
+    const dataArray = Array.isArray(jsonData.content) ? jsonData.content : [jsonData.content];
+
+    // Обрабатываем полученные данные и добавляем их в контейнер в виде карточек
+    dataArray.forEach(item => {
+      const cardElement = document.createElement('div');
+      cardElement.classList.add('card');
+
+      // Создаем элементы для отображения данных в карточке
+      const nameElement = document.createElement('h3');
+      nameElement.textContent = item.name || '';
+
+      const fullNameElement = document.createElement('p');
+      fullNameElement.textContent = `fullName: ${item.fullName || ''}`;
+
+      const rdaElement = document.createElement('p');
+      rdaElement.textContent = `RDA: ${item.rda || ''}`;
+
+      const formsElement = document.createElement('p');
+      formsElement.textContent = `forms: ${item.forms?.join(', ') || ''}`;
+
+      const interactionElement = document.createElement('p');
+      interactionElement.textContent = `interaction: ${item.interaction || ''}`;
+
+      const containsInElement = document.createElement('p');
+      containsInElement.textContent = `containsIn: ${item.containsIn?.join(', ') || ''}`;
+
+
+
+      // Добавляем элементы в карточку
+      cardElement.appendChild(nameElement);
+      cardElement.appendChild(fullNameElement);
+      cardElement.appendChild(rdaElement);
+
+      // Добавляем карточку в контейнер
+      container.appendChild(cardElement);
+    });
+  } catch (error) {
+    console.error('Ошибка при получении данных:', error);
+  }
+}
+
+    // Вызываем функцию для получения и отображения данных
+    fetchAndDisplayData();
+  </script>
+</body>
+</html>

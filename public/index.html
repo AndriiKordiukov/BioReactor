@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BioReactor</title>
+    <meta name="description" content="">
+    <link rel="icon" type="image/x-icon" href="./icons/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="styles/style.css"> -->
+    <link rel="stylesheet" href="/styles/nutrients.css">
+    <script src="./scripts/script.js"></script>
+  </head>
+  <body>
+
+    <h1><span id="name"></span></h1>
+  <div id="user-info">
+    <p>Element: <span id="fullName"></span></p>
+    <p>RDA: <span id="dosage"></span></p>
+    <p>Age: <span id="age"></span></p>
+    <p>Address:</p>
+    <ul>
+      <li>Street: <span id="street"></span></li>
+      <li>City: <span id="city"></span></li>
+      <li>State: <span id="state"></span></li>
+    </ul>
+    <p>Phone: <span id="phone"></span></p>
+  </div>
+
+  <!-- <script>
+    const url = 'http://localhost:8080/'; // Backend Server URL to connect
+    const address = 'nutrients/Caclium';
+    const request = url + address;
+    const requestMethod = "GET";
+    console.log(request);
+    // Функция для выполнения HTTP-запроса и обработки данных
+    function fetchAndDisplayData(url, request, requestMethod) {
+      
+      // Замените URL на свой API-endpoint и HTTP-метод
+      fetch(request, {
+        method: requestMethod,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Заполняем HTML-элементы данными из ответа API
+          document.getElementById('name').textContent = data.name || '';
+          document.getElementById('fullName').textContent = data.fullName || '';
+          document.getElementById('dosage').textContent = data.dosage || '';
+          document.getElementById('street').textContent = data.address?.street || '';
+          document.getElementById('city').textContent = data.address?.city || '';
+          document.getElementById('state').textContent = data.address?.state || '';
+          document.getElementById('phone').textContent = data.phone || '';
+        })
+        .catch(error => {
+          console.error('Ошибка при получении данных:', error);
+        });
+    }
+
+    // Вызываем функцию для получения и отображения данных
+    fetchAndDisplayData();
+  </script>
+
+
+    <script src="./scripts/script.js" async defer></script> -->
+  </body>
+</html>

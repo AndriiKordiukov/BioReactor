@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TEST TABLE</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="./scripts/table.js" async defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h3>Add Nutrient</h3>
+      <form id="api-form">
+        <label for="optional">Nutrient Type:</label>
+        <select id="optional" name="optional">
+          <option value="minerals">Minerals</option>
+          <option value="vitamins">Vitamins</option>
+          <option value="aminos">Amino Acids</option>
+        </select>
+        <label for="name">Nutrient Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="fullName">Nutrient Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required>
+        <label for="rda">Nutrient Dosage:</label>
+        <input type="text" id="rda" name="rda" required>
+        <button type="submit">Create</button>
+      </form>
+      <div id="success-message"></div>
+    
+
+    <br>
+    <h3>Active Forms</h3>
+    <table id="form-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Active Form Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <br>
+    <h3>Food</h3>
+    <div style="overflow-x: auto;">
+    <table id="food-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Food Name</th>
+          <th>Description</th>
+          <th>Form</th>
+          <th>Amount</th>
+          <th>Relation desc.</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <br>
+    <h3>Food</h3>
+    <div style="overflow-x: auto;">
+    <table id="interaction-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nutrient 1</th>
+          <th>Nutrient 2</th>
+          <th>Interaction</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  </div>
+  </body>
+</html>

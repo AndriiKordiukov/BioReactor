@@ -1,0 +1,402 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+header input {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+}
+
+header {
+  width: 100%;
+  /* padding: 5px 20px; */
+  box-sizing: border-box; /* padding inside the box size */
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+  color: rgb(64, 56, 56);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 550px;
+  width: calc(100vw - 40px);
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header-right {
+  position: relative;
+}
+
+
+aside {
+  width: 25%; /* Занимает 20% ширины окна */
+  background-color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  position: fixed; /* Фиксированная позиция */
+  top: 60px; /* Отступ от верха страницы */
+  left: 0; /* Зафиксировано слева */
+  height: calc(100vh - 60px); /* Высота по всему экрану */
+  overflow-y: auto;
+  display: none;
+}
+
+main {
+  flex: 1;
+  max-width: 550px;
+  width: calc(100vw - 40px);
+  /* padding: 20px; */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center; /* Centrifying cards */
+  justify-content: flex-start; /* Alignment cards by top */
+  height: auto;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.nutrient-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Card takes full width */
+  max-width: 850px; /* Limit maximum width */
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.nutrient-card:hover {
+  transform: scale(1.03);
+}
+
+.nutrient-card img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+.nutrient-card h3 {
+  margin: 15px 0;
+}
+
+.nutrient-card p {
+  padding: 0 15px;
+  margin-bottom: 15px;
+  color: #666;
+}
+
+.nutrient-card a {
+  text-decoration: none;
+  color: #2196F3;
+  display: block;
+  padding: 0px 0;
+  font-weight: bold;
+}
+/* wide screens */
+@media (min-width: 768px) {
+  .header-container{
+    max-width: 979px;
+    width: calc(100vw - 110px);
+  }
+  .header-center {
+    position: absolute;
+    left: 65%;
+    transform: translateX(-60%);
+  }
+  main {
+    max-width: 989px;
+    width: calc(100vw - 110px);
+  }
+  .nutrient-card{
+    max-width: 989px; /* Limit maximum width */
+  }
+  .nutrient-card img {
+    height: 350px;
+  }
+}
+
+@media (min-width: 990px) {
+  .header-container{
+    max-width: 1080px;
+    width: calc(100vw - 90px);
+  }
+  .header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  main {
+    max-width: 1100px;
+    width: calc(100vw - 90px);
+  }
+  .nutrient-card{
+    max-width: 1100px; /* Limit maximum width */
+  }
+  .nutrient-card img {
+    height: 400px;
+  }
+}
+
+@media (min-width: 1281px) {
+  .header-container{
+    max-width: 1280px;
+    width: calc(100vw - 90px);
+  }
+  main {
+    max-width: 1300px;
+    width: calc(100vw - 90px)
+  }
+  .nutrient-card{
+    max-width: 1300px; /* Limit maximum width */
+  }
+  .nutrient-card img {
+    height: 450px;
+  }
+}
+
+/* Mobile version adjustments */
+@media (max-width: 768px) {
+  aside {
+      width: 100%;
+      position: relative;
+      top: 0;
+      height: auto;
+      padding: 10px;
+      box-shadow: none;
+      border-top: 1px solid #ccc;
+      /* display: flex;  */
+      display: none;
+      justify-content: space-around;
+  }
+
+  main {
+      max-width: 550px;
+      width: 100vw - 40px;
+  }
+
+  .nutrient-card {
+      width: 100%; /* Card still takes full width on mobile */
+  }
+  .nutrient-card img {
+    height: 250px;
+  }
+  
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  /* margin-left: 20px; */
+}
+
+.nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a, .dropbtn {
+  color: white;
+  text-decoration: none;
+  font-family: TT Norms Pro;
+  font-size: 22px;
+  color: #393939;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+  
+}
+
+.dropbtn:hover{
+  color: white;
+  /* font-size: 24px; */
+  color: #0073b1;
+  /* transform: scale(1.01); */
+}
+
+.nav-links a:hover {
+  color: white;
+  /* font-size: 24px; */
+  color: #0073b1;
+  /* transform: scale(1.01); */
+  
+}
+
+.dropdown-content {
+  padding-top: 10px;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  top: auto; /* Adjust based on header height */
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 6px 8px;
+  margin: 6px 8px;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.dropdown-content a:hover {
+  color: #0073b1;
+  /* transform: scale(1.01); */
+
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.search-input {
+  width: 0;
+  opacity: 0;
+  transition: width 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.search-container.active .search-input {
+  width: 25%; /* Up to 25% of screen on desktop */
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+      justify-content: space-between;
+  }
+
+  .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  }
+
+  .nav-links {
+      display: none;
+  }
+
+  .search-container {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: flex-end;
+  }
+
+  .search-btn {
+      margin-right: 10px;
+  }
+
+  .search-container.active .search-input {
+      width: 80%; /* Up to 80% of screen on mobile */
+      opacity: 1;
+  }
+}
+
+
+#bioreactor-logo{
+  font-family: "TT Norms Pro";
+  /* font-weight: 700; */
+  font-size: 32px;
+  color: white;
+  text-decoration: none;
+  color: #2a2a2a;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  
+}
+
+@font-face {
+  font-family: "TT Norms Pro";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: local("TT Norms Pro"),
+      url("https://static.cookunity.com/cross/front-lib/fonts/tt-norms-pro-normal.woff2") format("woff2"),
+      url("https://static.cookunity.com/cross/front-lib/fonts/tt-norms-pro-normal.woff") format("woff"),
+      url("https://static.cookunity.com/cross/front-lib/fonts/tt-norms-pro-normal.ttf") format("truetype");
+}
+@font-face {
+font-family: "TT Norms Pro";
+font-weight: 700;
+font-style: normal;
+font-display: swap;
+src: url("https://statics.cookunity.com/fonts/tt-norms-pro/tt-norms-pro-bold.woff2") format("woff2"),
+  url("https://statics.cookunity.com/fonts/tt-norms-pro/tt-norms-pro-bold.woff") format("woff"),
+  url("https://statics.cookunity.com/fonts/tt-norms-pro/tt-norms-pro-bold.ttf") format("truetype");
+}
