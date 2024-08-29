@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="/styles/nutrients.css">
+    <script type="module" src="/scripts/script.js"></script>
+</head>
+<body>
+  <div class="body-wrapper">
+    <div class="container">
+      <main id="register">
+        <br><br><br><br><br><br>
+        <h1>Register</h1>
+    <form id="registerForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Register</button>
+    </form>
+    <br><br><br><br><br><br>
+      </main>
+    </div>
+    <footer class="footer"></footer>
+  </div>
+    
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('http://localhost:8080/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                alert('Registration successful!');
+            } else {
+                alert('Registration failed!');
+            }
+        });
+    </script>
+</body>
+</html>

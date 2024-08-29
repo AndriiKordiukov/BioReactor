@@ -235,10 +235,6 @@ async function saveFormsData() {
       console.log('Error sending the Active Forms request');
     }
   }
-
-
-
-
 }
 
 // --------------------------------------------------------------------------

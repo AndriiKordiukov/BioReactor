@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EDIT FOOD</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/nutrients.css">
+    <script type="module" src="/scripts/foodEditor.js" async defer></script>
+    <script type="module" src="/scripts/script.js"></script>
+  </head>
+  <body>
+    <div class="body-wrapper">
+      <main>
+        <div class="container">
+         
+          <h3 id="food-header">Food Editor</h3>
+          <img id="food-image" src="">
+          <div style="overflow-x: auto;">
+          <table id="food-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Food Name</th>
+                <th>Description</th>
+                <th>Image</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4">
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+          <button id="add-new">Add new</button>
+        </div>
+        <br>
+        <h3>Nutrients</h3>
+        <div style="overflow-x: auto;">
+        <table id="nutrient-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nutrient Name</th>
+              <th>Full Name</th>
+              <th>Form</th>
+              <th>Form desc.</th>
+              <th>Amount</th>
+              <th>Relation desc.</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+      </div> <br>
+</main>
+<footer class="footer"></footer>
+</div>
+</body>
+</html>

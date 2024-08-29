@@ -1,4 +1,81 @@
-document.addEventListener('DOMContentLoaded', function() {
+import {
+  LoadHeader,
+  LoadFooter,
+  loadFavicon,
+  loginWindow,
+  loginRequest, userButtonHeader,
+} from "./utils.js";
+
+LoadHeader();
+LoadFooter();
+loadFavicon();
+
+userButtonHeader();
+// loginWindow();
+// login();
+
+// Пример получения токена из localStorage
+const token = localStorage.getItem('token');
+console.log("Token - " + token); // Вывод токена в консоль
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* document.addEventListener('DOMContentLoaded', function() {
   // Create the header HTML
   const headerHTML = `
  <header>
@@ -38,3 +115,35 @@ document.addEventListener('DOMContentLoaded', function() {
   // Insert the header HTML at the beginning of the body
   document.body.insertAdjacentHTML('beforebegin', headerHTML);
 });
+ */
+
+// <!-- Initialize Swiper -->
+/* var swiper = new Swiper(".slide-content", {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  loop: true,
+  centerSlides: "true",
+  fade: "true",
+  grabCursor: "true",
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    dynamicBullets: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 2,
+    },
+    520: {
+      slidesPerView: 3,
+    },
+    950: {
+      slidesPerView: 5,
+    },
+  },
+});
+ */
