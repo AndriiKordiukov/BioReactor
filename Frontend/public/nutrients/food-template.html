@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Details</title>
+    <link rel="stylesheet" href="/styles/nutrients.css" />
+    <link rel="stylesheet" href="/styles/foodNutrientsTable.css" />
+    <link rel="stylesheet" href="/styles/style.css">
+    <script type="module" src="/scripts/script.js"></script>
+    <script type="module" src="/scripts/foodDetails.js" async defer></script>
+  </head>
+  <body>
+    <div class="body-wrapper">  
+      <main>
+        <div class="intro-container">
+          <h1 id="food-name"></h1>
+          <img id="food-image" alt="nutrient Image" />
+          <p id="food-description"></p>
+        </div>
+
+        <div class="nutrients">
+          <h2>Contain Nutrients</h2>
+          <div class="table-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Nutrient</th>
+                        <th>Active Form</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        </div>
+
+        <div class="nutritional-value">
+            <h2>Nutritive Value</h2>
+            <br><br><br>
+        </div>
+      </main>
+      <footer class="footer"></footer>
+    </div>
+  </body>
+</html>

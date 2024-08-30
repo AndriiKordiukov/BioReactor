@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BioReactor</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="/styles/nutrients.css" />
+    <script type="module" src="/scripts/script.js"></script>
+    <script type="module" src="/scripts/main.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  </head>
+  <body>
+    <div class="body-wrapper">
+      <div class="main-container">
+        <div class="left-side">
+          <div class="top-container">
+            <div id="block-1">
+              <div class="select-block">
+                <div class="select-category">
+                  <label for="category">Category:</label>
+                  <select id="category">
+                    <option value="">Select a category</option>
+                    <option value="vitamins">Vitamins</option>
+                    <option value="minerals">Minerals</option>
+                    <option value="food">Food</option>
+                  </select>
+                </div>
+                <div class="select-nutrient">
+                  <label id="item-label" for="item-list">Item:</label>
+                  <select id="item-list">
+                    <option id="default-item" value="">Select an item</option>
+                  </select>
+                </div>
+              </div>
+              <div class="show-block">
+                <img id="item-image" src="" alt="">
+                <div class="nutrient-name">
+                  <h3 id="just-name"></h3>
+                  <p id="full-name"></p>
+                </div>
+                <h4 id="forms-h4"></h4>
+                <ul id="forms">
+                </ul>
+                <a id="item-link" href="/" class="details">
+                  <button id="show-more">Show More</button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="middle-container">
+            <div id="block-2">
+              <a class="picture-link" href="/vitamins">
+                <img
+                  class="main-pictures"
+                  src="/images/vitamins/vitamins.webp"
+                  alt="vitamins"
+                />
+              </a>
+            </div>
+            <div id="block-3">
+              <a class="picture-link" href="/minerals">
+                <img
+                  class="main-pictures"
+                  src="/images/minerals/minerals.webp"
+                  alt="vitamins"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="bottom-container">
+            <div id="block-4">
+              <a class="picture-link" href="/food">
+                <img
+                  class="main-pictures"
+                  src="/images/food/food.webp"
+                  alt="vitamins"
+                />
+              </a>
+            </div>
+            <div id="block-5">
+              <a class="picture-link" href="/discover">
+                <img
+                  class="main-pictures"
+                  src="/images/blog/discover.webp"
+                  alt="vitamins"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="right-side">
+          <div id="block-6">
+            <h1 class="slogan">Be Smart</h1>
+            <h1 class="slogan">Be Healthy</h1>
+          </div>
+        </div>
+      </div>
+      <footer class="footer"></footer>
+    </div>
+  </body>
+</html>

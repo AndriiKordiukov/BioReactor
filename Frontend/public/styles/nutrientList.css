@@ -1,0 +1,19 @@
+.nutrient-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.nutrient-name h3{
+  font-size: 1.5em;
+}
+.nutrient-name p {
+  padding-left: 5px !important;
+  font-style: italic;
+  font-size: 1.5em;
+  font-weight: 500;
+  color: rgb(33, 35, 40);
+}
+.nutrient-card p {
+  margin-top: 15px !important; 
+}

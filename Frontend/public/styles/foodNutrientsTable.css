@@ -1,0 +1,158 @@
+.nutrients{
+  width: 90%;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 18px;
+  text-align: left;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.styled-table th, .styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+/* .styled-table .nutrientDescription {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  cursor: pointer;
+}
+
+.styled-table .nutrientDescription::after {
+  content: attr(data-description);
+  visibility: hidden;
+  opacity: 0;
+  width: 300px;
+  background-color: #878787;
+  color: #333;
+  text-align: left;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.styled-table .nutrientDescription:hover::after {
+  visibility: visible;
+  opacity: 1;
+  background-color: #878787;
+} */
+
+.styled-table .nutrientDescription .description-popup {
+  visibility: hidden;
+  opacity: 0;
+  max-width: 300px;
+  background-color: #fff;
+  color: #333;
+  text-align: left;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 1;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.styled-table .nutrientDescription {
+  position: relative;
+  cursor: pointer;
+}
+
+.styled-table .nutrientDescription .description-popup {
+  right: auto; /* Сбросим возможные правые отступы */
+}
+
+.styled-table .nutrientDescription .description-popup::before {
+  content: "";
+  position: absolute;
+  top: 100%; /* Треугольник располагается внизу */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+@media screen and (max-width: 768px) {
+  .styled-table .nutrientDescription .description-popup {
+    bottom: auto;
+    top: 125%; /* На мобильных устройствах окно появится сверху */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+
+
+
+/* WIDTH OF THE COLUMNS */
+.styled-table th:nth-child(1), .styled-table td:nth-child(1) {
+  width: 20%; /* ширина первого столбца */
+}
+
+.styled-table th:nth-child(2), .styled-table td:nth-child(2) {
+  width: 20%; /* ширина второго столбца */
+}
+
+.styled-table th:nth-child(3), .styled-table td:nth-child(3) {
+  width: 15%; /* ширина третьего столбца */
+}
+
+.styled-table th:nth-child(4), .styled-table td:nth-child(4) {
+  width: 45%; /* ширина четвёртого столбца */
+}
+
+@media screen and (max-width: 768px) {
+  .nutrients{
+    width: 100%;
+  }
+  th{
+    font-size: 0.8em;
+    padding: 10px 8px !important;
+  }
+
+  td {
+    font-size: 0.7em;
+  }
+  
+}

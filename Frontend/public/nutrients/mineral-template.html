@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mineral Details</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/nutrients.css" />
+    <link rel="stylesheet" href="/styles/sliderStyle.css" />
+    <link rel="stylesheet" href="/styles/swiper.css" />
+    <script type="module" src="/scripts/script.js"></script>
+    <!-- <link rel="stylesheet" href="/styles/style.css"> -->
+    <!-- <script src="/scripts/script.js" async defer></script> -->
+    <script type="module" src="/scripts/mineral.js" async defer></script>
+  </head>
+  <body>
+    <div class="body-wrapper">
+        
+      <main>
+        <div class="intro-container">
+          <h1 id="nutrient-name"></h1>
+          <img id="nutrient-image" alt="nutrient Image" />
+          <p id="nutrient-description"></p>
+        </div>
+
+        <div class="forms">
+          <h2>Active Forms</h2>
+          <ul id="nutrient-forms">
+            <!-- vitamin form items generated -->
+          </ul>
+        </div>
+
+        <div class="rda">
+          <h2>Recommended Daily Allowance (RDA)</h2>
+          <p id="rda-description"></p>
+          <!-- <p>RDA: <span id="rda-value"></span></p> -->
+        </div>
+        <div class="food-sources">
+          <h2>Best Food Sources</h2>
+        </div>
+        <div class="interactions">
+          <h2>Interactions with Other Nutrients</h2>
+          <table id="interaction-table">
+          </table>
+        </div>
+      </main>
+      <footer class="footer"></footer>
+    </div>
+    <script src="/scripts/swiper.js"></script>
+  </body>
+</html>

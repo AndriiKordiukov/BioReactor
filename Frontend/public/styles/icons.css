@@ -1,0 +1,39 @@
+.edit-button {
+  /* display: inline-block; */
+  /* background-repeat: no-repeat; */
+  height: 30px;
+  width: 30px;
+  margin-left: 5px;
+  content: url('../icons/svg/edit.svg');
+  background-position: 10px 0px;
+}
+
+.save-button {
+  height: 30px;
+  width: 30px;
+
+  content: url('../icons/svg/save.svg');
+  background-position: 10px 0px;
+}
+
+#checkmark {
+  height: 30px;
+  width: 30px;
+  background-image: url('../icons/svg/checkmark.svg');
+  background-position: 0px 0px;
+}
+
+.add-row {
+  display: block;
+  height: 30px;
+  width: 30px;
+  background-image: url('../icons/svg/add.svg');
+}
+
+.delete-button {
+  height: 30px;
+  width: 30px;
+  content: url('../icons/svg/delete.svg');
+  margin-left: 6px;
+  background-position: 10px 0px;
+}
