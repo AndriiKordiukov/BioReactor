@@ -1,6 +1,6 @@
 ![BioReactor](Frontend/public/images/vitamins/BioReactor.png)
 # BioReactor
-![Version](https://img.shields.io/github/v/release/AndriiKordiukov/BioReactor)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AndriiKordiukov/BioReactor)
 
 BioReactor is a comprehensive web application dedicated to providing complete and actionable information on nutrients, foods, and their synergistic relationships. This project demonstrates my ability to create detailed, user-focused solutions that empower individuals to make informed decisions about their health and well-being.
 ## Features
@@ -25,7 +25,8 @@ BioReactor leverages a robust client-server architecture, featuring:
 # BioReactor-CapStone
 Java Spring Boot based REST API server that controls MySQL Database and perform HTTP request from the Frontend (Dynamic website running on Node.js with Express)
 
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AndriiKordiukov/BioReactor)
+
+![Version](https://img.shields.io/github/v/release/AndriiKordiukov/BioReactor)
 
 ## License
 BioReactor is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License.
