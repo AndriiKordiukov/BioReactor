@@ -1,4 +1,4 @@
-![BioReactor](Frontend/public/images/vitamins/BioReactor.png)
+![BioReactor](public/images/vitamins/BioReactor.png)
 # BioReactor
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AndriiKordiukov/BioReactor)
 
