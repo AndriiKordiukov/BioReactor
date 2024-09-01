@@ -322,17 +322,16 @@ export const nutrientName = url.split("/").pop(); // Extract nutrient's identifi
 export const footerHTML = `
   <div class="footer-content">
     <div class="footer-section">
-      <h3 class="footer-section-title">Navigation <i class="fas fa-chevron-down"></i></h3>
+      <h3 class="footer-section-title">Navigation<i class="fas fa-chevron-down"></i></h3>
       <ul class="footer-section-content">
         <li><a href="/">Main</a></li>
         <li><a href="/vitamins">Vitamins</a></li>
         <li><a href="/minerals">Minerals</a></li>
         <li><a href="/food">Food</a></li>
-        <li><a href="/about">About</a></li>
       </ul>
     </div>
     <div class="footer-section">
-      <h3 class="footer-section-title">Socials <i class="fas fa-chevron-down"></i></h3>
+      <h3 class="footer-section-title">Socials<i class="fas fa-chevron-down"></i></h3>
       <ul class="footer-section-content">
         <li><a href="#">Facebook</a></li>
         <li><a href="#">Instagram</a></li>
@@ -340,7 +339,11 @@ export const footerHTML = `
       </ul>
     </div>
     <div class="footer-section">
-      <h3 class="footer-section-title">Contact Us</h3>
+      <a href="/about">
+        <h3 id="footer-link" class="footer-section-title">About</h3>
+      </a>
+      <h3 class="footer-section-title">Contact Us<i class="fas fa-chevron-down"></i></h3>
+      <ul class="footer-section-content">
       <p>bioreactor@gmail.com</p>
     </div>
   </div>
@@ -375,12 +378,14 @@ export async function LoadFooter() {
 
 // EDIT BUTTON
 export async function loadEditLink(nutrientId) {
+  if(token){
   let lastElement = document.querySelector("main");
   lastElement.insertAdjacentHTML(
     "beforeEnd",
     `<a href="edit/${nutrientId}" class="edit-link">
             <button id="edit-button">Edit</button></a>`
-  );
+    );
+  }
 }
 
 export function checkNutrientType(nutrientName = "") {
@@ -401,7 +406,7 @@ export function loadFavicon() {
   document.head.appendChild(faviconLink);
 }
 
-export async function deleteRow(row, deleteFunction) {
+export async function deleteRow(row, deleteType = '', objectId) {
   const modal = document.createElement("div");
   modal.classList.add("modal-delete");
 
@@ -417,15 +422,20 @@ export async function deleteRow(row, deleteFunction) {
   const yesButton = document.createElement("button");
   yesButton.classList.add("yes-button");
   yesButton.textContent = "Yes";
-  yesButton.addEventListener("click", () => {
+  yesButton.addEventListener("click", async () => {
     // ============ Custom function to delete a row ===========
-    deleteFunction(row);
+    let rowIndex = findRowIndex(row);
+    console.log('Deleting Object with id - ' + objectId);
+    await deleteFunction(deleteType, objectId);
+    row.remove();
     modal.remove();
   });
   const noButton = document.createElement("button");
   noButton.classList.add("no-button");
   noButton.textContent = "No";
   noButton.addEventListener("click", () => {
+
+
     modal.remove();
   });
 
@@ -439,6 +449,30 @@ export async function deleteRow(row, deleteFunction) {
   document.body.appendChild(modal);
 }
 
+// DELETE
+async function deleteFunction(deleteType='', deleteId) {
+  // DELETING ACTIVE FORM FROM THE DATABASE
+  console.log(deleteType + 'delete/' + deleteId);
+  
+    let result = await fetchAPI(deleteType + 'delete/' + deleteId, delets);
+    console.log('Active F with ID -'+ result.id + ' was deleted successfully.');
+}
+
+
+
+
+function findRowIndex(row) { 
+  let rows = row.parentNode.parentNode.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+  let rowIndex = -1;
+  for (let i = 0; i < rows.length; i++) {
+    if (rows[i] === row) {
+      rowIndex = i;
+      break;
+    }
+  }
+  console.log(`Row index: ${rowIndex + 1}`);
+  return rowIndex;
+}
 // LOGOUT
 
 export function userLogout() {
@@ -750,7 +784,6 @@ export function clearUserForm() {
   }
 }
 // ============== LOGIN FORM ======================
-
 const loginForm = `
   <div id="loginModal" class="login-modal">
             <div class="login-modal-content">
@@ -759,7 +792,6 @@ const loginForm = `
               <form id="login-form">
                 <label class="login-label" for="username">Username</label>
                 <input class="login-input"type="text" id="username" name="username" required />
-
                 <label class="login-label" for="password">Password</label>
                 <div class="password-container">
                   <input class="login-input" type="password" id="password" name="password" required />
@@ -776,5 +808,30 @@ const loginForm = `
           </div>
 `;
 
-
 // ============== LOGIN FORM ======================
+
+
+// CHECKMARK POPUP
+
+export function createCheckmark() {
+  // Creating new element <div> for notification
+  const notificationElement = document.createElement('div');
+  notificationElement.id = "notification";
+  // Adding popup to a DOM
+  notificationElement.innerHTML = `Saved Succesfully!`;
+  document.body.appendChild(notificationElement);
+
+  setTimeout(() => {
+    notificationElement.style.opacity = '1';
+  }, 10);
+
+
+  // Hiding in 3 seconds
+
+  setTimeout(() => {
+    notificationElement.style.opacity = '0';
+    setTimeout(() => {
+      document.body.removeChild(notificationElement);
+    }, 500);
+  }, 3000);
+}

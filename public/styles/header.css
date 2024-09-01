@@ -166,8 +166,8 @@ header {
 }
 
 .search-btn img {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
 }
 .search-btn:hover {
 background-color: #fff;
@@ -282,6 +282,12 @@ background-color: #fff;
   .search-container.active .search-input {
       width: 75vw; /* 90% ширины окна для очень маленьких экранов */
   }
+  .account-icon{
+    margin-left: 0;
+  }
+  .search-btn{
+    margin-right: 5px;
+  }
 }
 
 /* SEARCH RESULTS */
@@ -344,18 +350,25 @@ background-color: #fff;
 /* Account pop-up */
 .account-popup {
   display: none;
-  position: absolute;
+  position: fixed !important;
+  top:65px;
+  right: 5%;
+  /* transform: translateX(100%); */
   background-color: #fff;
   padding: 25px;
   min-width: 250px;
   max-width: 350px;
   border: 1px solid #ccc;
   border-radius: 15px;
-  left: 75%;
-  transform: translateX(-50%);
-  top: 65px;
+  transform: translateX(-0%);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+@media screen and (min-width: 1280px) {
+  .account-popup {
+    right: 15%;
+  }
+}
+
 
 .account-popup.active {
   display: block;
@@ -363,10 +376,12 @@ background-color: #fff;
 }
 
 .account-popup-content{
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0 auto 0 auto;
 }
 
 .account-name{

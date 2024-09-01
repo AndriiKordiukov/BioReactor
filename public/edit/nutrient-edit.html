@@ -2,13 +2,15 @@
 
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>EDIT NUTRIENT</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="/styles/nutrients.css">
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="icon" href="/icons/favicon.png" type = "image/x-icon"> -->
+
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/nutrients.css" />
     <script type="module" src="/scripts/editor.js" async defer></script>
     <script type="module" src="/scripts/script.js"></script>
   </head>
@@ -16,96 +18,109 @@
     <div class="body-wrapper">
       <main>
         <div class="container">
-          <button id="add-new">Add new</button>
           <h3 id="nutrient-header">Nutrient Editor</h3>
-          <img id="nutrient-image" src="">
-          <div style="overflow-x: auto;">
-          <table id="nutrient-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nutrient Name</th>
-                <th>Full Name</th>
-                <th>RDA</th>
-                <th>Description</th>
-                <th>Image</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-              <tr>
-                <td colspan="4">
-                </td>
-              </tr>
-            </tfoot>
-          </table>
+          <img id="nutrient-image" src="" />
+          <div class="button-container">
+            <button id="add-new">Add New Nutrient</button>
+            <button id="add-new-form">Add New Active Form</button>
+          </div>
+          <div style="overflow-x: auto">
+            <table id="nutrient-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nutrient Name</th>
+                  <th>Full Name</th>
+                  <th>RDA</th>
+                  <th>Description</th>
+                  <th>Image</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <br />
+          <h3>Active Forms</h3>
+          <div
+            style="
+              overflow-x: auto;
+            "
+          >
+            <table id="form-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Active Form Name</th>
+                  <th>Description</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <br />
+          <h3>Food</h3>
+          <div
+            style="
+              overflow-x: auto;
+            "
+          >
+            <table id="food-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Food Name</th>
+                  <th>Description</th>
+                  <th>Form</th>
+                  <th>Amount</th>
+                  <th>Relation desc.</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <br />
+          <h3>Nutrient Interactions</h3>
+          <div style="overflow-x: auto">
+            <table id="interaction-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nutrient 1</th>
+                  <th>Nutrient 2</th>
+                  <th>Interaction</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
         </div>
-        <br>
-        <h3>Active Forms</h3>
-        <table id="form-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Active Form Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4">
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-
-        <br>
-        <h3>Food</h3>
-        <div style="height: 100%; overflow-x: auto; overflow-y: visible; height: 100%;">
-        <table id="food-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Food Name</th>
-              <th>Description</th>
-              <th>Form</th>
-              <th>Amount</th>
-              <th>Relation desc.</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4">
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-        <br>
-        <h3>Nutrient Interactions</h3>
-        <div style="overflow-x: auto;">
-        <table id="interaction-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nutrient 1</th>
-              <th>Nutrient 2</th>
-              <th>Interaction</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4">
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-      </div> <br>
-</main>
-<footer class="footer"></footer>
-</div>
-</body>
+        <br />
+      </main>
+      <footer class="footer"></footer>
+    </div>
+  </body>
 </html>

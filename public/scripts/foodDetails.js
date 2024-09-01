@@ -74,8 +74,11 @@ async function LoadFoodNutrients() {
       console.log(nutrient);
       // Filling variables
       let nutrientName = nutrient.name;
-      let nutrientType = checkNutrientType(nutrient.name)
-      let nutrientUrl = nutrientName.replace(/ /g, "-");
+      let nutrientType = nutrient.nutrientType;
+      
+      
+      let nutrientUrl = nutrient.nutrientType + '/' + nutrientName.replace(/ /g, "%20");
+      console.log(nutrientUrl);
       
       let nutrientAmount = foodObject.foodNutrientRelations[i].amount;
       let nutrientFoodDescription = foodObject.foodNutrientRelations[i].description;
@@ -83,7 +86,7 @@ async function LoadFoodNutrients() {
 
       // TABLE ROW HTML
       const nutrientTableHTML = `
-      <td><a href=${nutrientType}/${nutrientUrl}>${nutrientName}</a></td>
+      <td><a href=/${nutrientUrl}>${nutrientName}</a></td>
       <td>${nutrientForm}</td>
       <td>${nutrientAmount}</td>
       <td class="nutrientDescription" data-description="${nutrientFoodDescription}">${nutrientShortDescription}</td>

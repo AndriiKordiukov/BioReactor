@@ -4,10 +4,10 @@ import {
   url, fetchAPI, host,
   forms, token,
   relations,
-  interactions, nutrientsArray,
+  interactions, nutrientsArray, nutrient,
   food,
   patch, post, delets, search, create,
-  LoadHeader, LoadFooter, deleteRow,
+  LoadHeader, LoadFooter, deleteRow, createCheckmark,
   activeForm, foodSource, nutrientsInteraction, foodNutrientRelation,
   activeForms, nutrientsInteractions, foodNutrientRelations, foodSources
 } from "./utils.js";
@@ -43,10 +43,6 @@ async function loadingFood() {
 function addNewBtn(table ,object, functionName) {  
   let addRowButton = document.createElement('span');
   addRowButton.className = 'add-row';
-  addRowButton.style.position = "absolute";
-  addRowButton.style.width = "24px";
-  addRowButton.style.height = "24px";
-  addRowButton.style.backgroundSize = "contain";
   // Event handler for the "Add" button
   addRowButton.addEventListener('click', () => {
     console.log('clicked Add');
@@ -97,7 +93,7 @@ async function saveRow(row) {
   if (responseSave.formName == data.formName) { 
     console.log('Data updated successfully');
     activeForm.formName = responseSave.formName; 
-    createCheckmark(row);
+    createCheckmark();
   }
   editableInputs.forEach((input) => {
     input.disabled = true;
@@ -141,36 +137,6 @@ function editSaveBtn(row) {
   saveButton.style.display = saveButton.style.display === 'none' ? 'inline-block' : 'none';
 }
 
-function createCheckmark(targetElement) {
-  // Creating new element <i> for a checkmark
-  const checkmarkElement = document.createElement("i");
-  checkmarkElement.id = "checkmark";
-  
-  // add styles to the checkmark element
-  checkmarkElement.style.position = "absolute";
-  checkmarkElement.style.width = "24px";
-  checkmarkElement.style.height = "24px";
-  checkmarkElement.style.backgroundSize = "contain";
-  checkmarkElement.style.pointerEvents = "none";
-  
-  // Positioning
-  const targetRect = targetElement.getBoundingClientRect();
-  checkmarkElement.style.left = `${targetRect.left + targetRect.width -5}px`;
-  checkmarkElement.style.top = `${targetRect.top + targetRect.height - 40}px`;
-  
-  // Adding checkmark to a DOM
-  targetElement.lastChild.appendChild(checkmarkElement);
-
-  // Hiding in 1 secon
-  checkmarkElement.style.transition = "opacity 1s ease-in-out";
-  setTimeout(() => {
-    checkmarkElement.style.opacity = "0";
-    setTimeout(() => {
-      targetElement.lastChild.removeChild(checkmarkElement);
-    }, 1000); // Removing after 1 second
-  }, 5000);
-}
-
 
 function setupPage() { 
   document.getElementById('food-header').innerHTML = 'Food Editor - ' + foodObject.foodName;
@@ -181,6 +147,8 @@ function setupPage() {
 
 function creatingNutrientRow(nutrientObject = nutrient, formObject = activeForm, relationObject = foodNutrientRelation) {
   const row = document.createElement('tr');
+  console.log(nutrientObject);
+  
 
   const idCell = document.createElement('td');
   const idInput = document.createElement('input');
@@ -271,7 +239,7 @@ function creatingNutrientRow(nutrientObject = nutrient, formObject = activeForm,
 
   // Adding Buttons to the table
   const actionCell = document.createElement('td'); // new column
-  actionCell.style.width = '75px';
+  actionCell.classList.add('action-cell');
   const editButton = document.createElement('i'); // new Edit button
   // editButton.textContent = 'Edit'; // button text
   editButton.classList.add('edit-button'); // add class to the button
@@ -343,7 +311,7 @@ async function saveRelationRow(row) {
   // =========== RELATION DATA ===============
   const relationData = {
     // id: 0,
-    forms: editableInputs[2],value,
+    forms: editableInputs[2].value,
     amount: editableInputs[4].value,
     description: editableInputs[5].value,
     food: foodObject.id,
@@ -363,6 +331,8 @@ async function saveRelationRow(row) {
   }
 
   let responseRelationSave, responseNutrientSave, responseFormSave;
+  console.log('Checkign forms');
+  
   console.log('NUMBER OR NUT? - ' + !isNaN(editableInputs[2].value));
   if (isNaN(editableInputs[2].value)) { 
   // Changing form name to ID for patcing realation
@@ -401,7 +371,7 @@ async function saveRelationRow(row) {
 
   if (responseNutrientSave.name == nutrientData.name) {
     console.log('Data updated successfully');
-    createCheckmark(row);
+    createCheckmark();
   } else { 
     console.error('Error updating data:', responseNutrientSave);
   }
@@ -428,7 +398,7 @@ async function addFooodRelationsByFood() {
     activeForms[i] = await fetchAPI(forms + foodNutrientRelations[i].forms); // fetching
 
     nutrientTable.getElementsByTagName('tbody')[0]
-      .appendChild(creatingNutrientRow(nutrientsArray[i], activeForms[i], foodNutrientRelations[i]));
+      .appendChild(creatingNutrientRow(nutrientsArray[i][0], activeForms[i], foodNutrientRelations[i]));
     }
 }
 
@@ -493,12 +463,7 @@ async function loadFoodTable() {
   let foodRow = document.getElementById('food-row')
   // Adding Buttons to the table
   const actionCell = document.createElement('td'); // new column
-  actionCell.style.width = '10%';
-  actionCell.style.height = '42px';
-  actionCell.style.display = 'flex';
-  actionCell.style.flexDirection = 'row';
-  actionCell.style.alignItems = 'center';
-  // actionCell.style.justifyContent = 'center';
+  actionCell.classList.add('action-cell');
   const editButton = document.createElement('i'); // new Edit button
   // editButton.textContent = 'Edit'; // button text
   editButton.classList.add('edit-button'); // add class to the button
@@ -524,17 +489,18 @@ async function loadFoodTable() {
  
 async function saveNutrient(row) {
   let formId = row.querySelector('.id-input').value; // insert Form ID (same as in the form object
-  console.log('SAVE ROW - ' + formId);
+  console.log('SAVE food id - ' + formId);
   let editableInputs = row.querySelectorAll('.editable');
+  console.log('description -'+ editableInputs[1].value);
+  
   let data = {
     id: foodObject.id,
     name: editableInputs[0].value,
-    fullName: editableInputs[1].value,
-    description: editableInputs[2].value,
-    image: editableInputs[4].value,
-    nutrientType: nutrient.nutrientType
+    description: editableInputs[1].value,
+    image: editableInputs[2].value,
   };
-
+  console.log(data);
+  
   let responseSave;
   if (formId == '0') {
     responseSave = await fetchAPI(food + create, post, data);
@@ -542,13 +508,13 @@ async function saveNutrient(row) {
   } else {
     data.id = formId; // only for patching
     responseSave = await fetchAPI
-      (nutrientfoodType + formId, patch, data);
+      (food + formId, patch, data);
   }
 
   if (responseSave.name == data.name) { 
     console.log('Nutrient Data updated successfully');
     foodObject = responseSave;
-    createCheckmark(row);
+    createCheckmark();
   }
   editableInputs.forEach((input) => {
     input.disabled = true;
@@ -578,8 +544,8 @@ async function saveNutrient(row) {
       <form id="api-form">
         <label for="name">Food Name:</label>
         <input type="text" id="name" name="name" required>
-        <label for="rda">Description:</label>
-        <input type="text" id="rda" name="rda">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description">
         <label for="image">Upload Image:</label>
         <input type="file" id="image" name="image" accept="image/*">
         <button id="submit" type="submit">Create</button>

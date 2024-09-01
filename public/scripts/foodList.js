@@ -10,7 +10,7 @@ let minerals = [];
 let foods = [];
 let filteredFood = [];
 let currentIndex = 0;
-const itemsPerPage = 10;
+const itemsPerPage = 30;
 
 // LOADING CONTENT
 await loadFood();     // Load Food

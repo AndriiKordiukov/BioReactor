@@ -49,6 +49,8 @@ async function loadingVitamin() {
 // GOTO -> utils.js
 async function loadingActiveForms(NutrientId) {
   let activeForms = await fetchAPI(forms + byNutrint + NutrientId);
+  console.log(forms + byNutrint + NutrientId);
+  
 
   for (let i = 0; i < activeForms.length; i++) {
 

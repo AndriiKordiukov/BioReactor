@@ -6,9 +6,9 @@ import {
   forms, token,
   relations,
   interactions,
-  food,
+  food, deleteRow,
   patch, post, delets, search, create,
-  LoadHeader, LoadFooter,
+  LoadHeader, LoadFooter, createCheckmark,
   url, activeForm, foodSource, nutrientsInteraction, foodNutrientRelation,
   activeForms, nutrientsInteractions, foodNutrientRelations, foodSources
 } from "./utils.js";
@@ -20,7 +20,13 @@ var nutrientObject = [];
 let nutrientType = url.split("/")[1] + '/';
 
 const nutrientTable = document.getElementById("nutrient-table");
-const tbodyNutrient = nutrientTable.getElementsByTagName('tbody')[0];
+var tbodyNutrient;
+
+try {
+  tbodyNutrient = nutrientTable.getElementsByTagName('tbody')[0];
+} catch (error) { 
+  console.error('Error getting table element: tbody', error);
+}
 
 const formTable = document.getElementById('form-table');
 // const tbodyForm = formTable.getElementsByTagName('tbody')[0];
@@ -58,11 +64,6 @@ async function loadingNutrient() {
 function addNewBtn(table ,object, functionName) {  
   let addRowButton = document.createElement('span');
   addRowButton.className = 'add-row';
-  addRowButton.style.position = "relative";
-  addRowButton.style.left = "15%";
-  addRowButton.style.width = "24px";
-  addRowButton.style.height = "24px";
-  addRowButton.style.backgroundSize = "contain";
   // Event handler for the "Add" button
   addRowButton.addEventListener('click', () => {
     console.log('clicked Add');
@@ -127,11 +128,7 @@ function creatingFormRow(activeFormObject) {
 
   // Adding Buttons to the table
   const actionCell = document.createElement('td'); // new column
-  actionCell.style.width = '10%';
-  actionCell.style.height = '42px';
-  actionCell.style.display = 'flex';
-  actionCell.style.flexDirection = 'row';
-  actionCell.style.alignItems = 'center';
+  actionCell.classList.add('action-cell'); // new column
   const editButton = document.createElement('i'); // new Edit button
   // editButton.textContent = 'Edit'; // button text
   editButton.classList.add('edit-button'); // add class to the button
@@ -149,7 +146,7 @@ function creatingFormRow(activeFormObject) {
   const deleteButton = document.createElement('i'); // add Delete button
   deleteButton.textContent = 'Delete'; // button text
   deleteButton.classList.add('delete-button'); // add class to the button
-  deleteButton.addEventListener('click', () => deleteRow(row));  // add event listener to the button
+  deleteButton.addEventListener('click', () => deleteRow(row, forms, activeFormObject.id));  // add event listener to the button
   actionCell.appendChild(deleteButton);  // Add Delete button to the action cell
 
   // Creating a row with inputs and buttons
@@ -197,7 +194,7 @@ async function saveRow(row) {
   if (responseSave.formName == data.formName) { 
     console.log('Data updated successfully');
     activeForm.formName = responseSave.formName; 
-    createCheckmark(row);
+    createCheckmark();
   }
   editableInputs.forEach((input) => {
     input.disabled = true;
@@ -248,36 +245,6 @@ function createNewForm() {
     description: '',
     nutrientId: nutrientObject.id
   }
-}
-
-function createCheckmark(targetElement) {
-  // Creating new element <i> for a checkmark
-  const checkmarkElement = document.createElement("i");
-  checkmarkElement.id = "checkmark";
-  
-  // add styles to the checkmark element
-  checkmarkElement.style.position = "absolute";
-  checkmarkElement.style.width = "24px";
-  checkmarkElement.style.height = "24px";
-  checkmarkElement.style.backgroundSize = "contain";
-  checkmarkElement.style.pointerEvents = "none";
-  
-  // Positioning
-  const targetRect = targetElement.getBoundingClientRect();
-  checkmarkElement.style.left = `${targetRect.left + targetRect.width -5}px`;
-  checkmarkElement.style.top = `${targetRect.top + targetRect.height - 40}px`;
-  
-  // Adding checkmark to a DOM
-  targetElement.lastChild.appendChild(checkmarkElement);
-
-  // Hiding in 1 secon
-  checkmarkElement.style.transition = "opacity 1s ease-in-out";
-  setTimeout(() => {
-    checkmarkElement.style.opacity = "0";
-    setTimeout(() => {
-      targetElement.lastChild.removeChild(checkmarkElement);
-    }, 1000); // Removing after 1 second
-  }, 5000);
 }
 
 function creatingFoodRow(activeFoodObject, activeFormObject = activeForm, relationObject = foodNutrientRelation) {
@@ -356,11 +323,7 @@ function creatingFoodRow(activeFoodObject, activeFormObject = activeForm, relati
 
   // Adding Buttons to the table
   const actionCell = document.createElement('td'); // new column
-  actionCell.style.width = '10%';
-  actionCell.style.height = '42px';
-  actionCell.style.display = 'flex';
-  actionCell.style.flexDirection = 'row';
-  actionCell.style.alignItems = 'center';
+  actionCell.classList.add('action-cell'); // add class to the column
   const editButton = document.createElement('i'); // new Edit button
   // editButton.textContent = 'Edit'; // button text
   editButton.classList.add('edit-button'); // add class to the button
@@ -369,7 +332,7 @@ function creatingFoodRow(activeFoodObject, activeFormObject = activeForm, relati
   const saveButton = document.createElement('i'); // new Save button
   saveButton.textContent = 'Save'; // button text
   saveButton.classList.add('save-button'); // add class to the button
-  saveButton.addEventListener('click', () => saveRelationRow(row));  // add event listener to the button
+  saveButton.addEventListener('click', () => saveRelationRow(row,));  // add event listener to the button
   saveButton.style.display = 'none'; // Hide Save button by default
   actionCell.appendChild(editButton); // Add Edit button to the action cell
   actionCell.appendChild(saveButton);  // Add Save button to the action cell
@@ -377,7 +340,7 @@ function creatingFoodRow(activeFoodObject, activeFormObject = activeForm, relati
   const deleteButton = document.createElement('i'); // add Delete button
   deleteButton.textContent = 'Delete'; // button text
   deleteButton.classList.add('delete-button'); // add class to the button
-  deleteButton.addEventListener('click', () => deleteRow(row));  // add event listener to the button
+  deleteButton.addEventListener('click', () => deleteRow(row, food, activeFoodObject.id));  // add event listener to the button
   actionCell.appendChild(deleteButton);  // Add Delete button to the action cell
 
   // Creating a row with inputs and buttons
@@ -475,7 +438,7 @@ async function saveRelationRow(row) {
 
   if (responseFoodSave.foodName == foodData.foodName) { 
     console.log('Data updated successfully');
-    createCheckmark(row);
+    createCheckmark();
   }
   editableInputs.forEach((input) => {
     input.disabled = true;
@@ -554,11 +517,7 @@ function creatingInteractionRow(interactionObject = nutrientsInteraction, firstN
 
   // Adding Buttons to the table
   const actionCell = document.createElement('td'); // new column
-  actionCell.style.width = '10%';
-  actionCell.style.height = '42px';
-  actionCell.style.display = 'flex';
-  actionCell.style.flexDirection = 'row';
-  actionCell.style.alignItems = 'center';
+  actionCell.classList.add('action-cell'); // add class to the column
   const editButton = document.createElement('i'); // new Edit button
   // editButton.textContent = 'Edit'; // button text
   editButton.classList.add('edit-button'); // add class to the button
@@ -619,26 +578,33 @@ async function saveInteraction(row) {
   let editableInputs = row.querySelectorAll('.editable');
   // TODO: optimize for fetching by ID instead of name
   let firstNutrient = await findNutrientByName(editableInputs[0].value); // fetching first nutrient data
+  console.log(firstNutrient);
+  
   let secondNutrient = await findNutrientByName(editableInputs[1].value); // fetching second nutrient data
+  console.log(await secondNutrient);
   let data = {
     id: interactionId, // insert Interaction ID (same as in the form object)
     firstNutrient: firstNutrient.id,
     secondNutrient: secondNutrient.id,
     interaction: editableInputs[2].value // insert Nutrient ID (same as in the nutrient object)
   };
+  console.log('Data trying to send: ', data);
 
   let responseSave;
   if (interactionId == '0') {
     responseSave = await fetchAPI(interactions + create, post, data, token);
-    interactionId.value = responseSave.id; // update Form ID
+    console.log(responseSave.id);
+    
+    interactionId.value = await responseSave.id; // update Form ID
   } else {
     responseSave = await fetchAPI
       (interactions + interactionId, patch, data, token);
+    console.log(responseSave.secondNutrient);
   }
 
   if (responseSave.interaction == data.interaction) { 
     console.log('Data updated successfully');
-    createCheckmark(row);
+    createCheckmark();
   }
   editableInputs.forEach((input) => {
     input.disabled = true;
@@ -662,7 +628,7 @@ async function addInteractionsByNutrient() {
     if (responseData[i].firstNutrient == nutrientObject.id) {
       firstNutrient = nutrientObject;
       secondNutrient = await findNutrientById(responseData[i].secondNutrient);
-    } else { 
+    } else {
       firstNutrient = await findNutrientById(responseData[i].firstNutrient);
       secondNutrient = nutrientObject;
     }
@@ -678,37 +644,20 @@ async function addInteractionsByNutrient() {
 }
 
 async function findNutrientByName(name = nutrientObject.name) {
-  return await fetchAPI(search + byName + name);  
-  
-  /*  let responseMineral = await fetchAPI(minerals + byName + name);
-    if (responseMineral.id) { 
-      return responseMineral;
-    } else if (responseVitamin.id) {
-      let responseVitamin = await fetchAPI(vitamins + byName + name);
-      return responseVitamin;
-    } else {
-    return 'No nutrient found by name ' + name;
-    }  */
+  return (await fetchAPI(search + byName + name))[0];  
 }
 
 async function findNutrientById(id) {
-/*   let responseMineral = await fetchAPI(minerals + id);
-    if (responseMineral.id) { 
-      return responseMineral;
-    } else if (responseVitamin.id) {
-      let responseVitamin = await fetchAPI(vitamins + id);
-      return responseVitamin;
-    } else {
-    return 'No nutrient found by id ' + id;
-    } */
-  return await fetchAPI(search + byId + id);
+  return (await fetchAPI(search + byId + id))[0];
 }
 
 function setupPage() { 
   document.getElementById('nutrient-header').innerHTML = 'Nutrient Editor - ' + nutrientObject.name;
   document.getElementById('nutrient-image').src = nutrientObject.image;
   addNewNutrientForm();
-  document.getElementById('add-new').addEventListener('click', () => activateAddForm());
+  addNewActiveForm();
+  document.getElementById('add-new').addEventListener('click', () => activateAddNutrient());
+  document.getElementById('add-new-form').addEventListener('click', () => activateAddActiveForm());
 }
 
 
@@ -774,11 +723,7 @@ async function loadNutrientTable() {
   let nutrientRow = document.getElementById('nutrient-row')
   // Adding Buttons to the table
   const actionCell = document.createElement('td'); // new column
-  actionCell.style.width = '10%';
-  actionCell.style.height = '42px';
-  actionCell.style.display = 'flex';
-  actionCell.style.flexDirection = 'row';
-  actionCell.style.alignItems = 'center';
+  actionCell.classList.add('action-cell'); // add class to the column
   const editButton = document.createElement('i'); // new Edit button
   // editButton.textContent = 'Edit'; // button text
   editButton.classList.add('edit-button'); // add class to the button
@@ -810,8 +755,8 @@ async function saveNutrient(row) {
     id: nutrientObject.id,
     name: editableInputs[0].value,
     fullName: editableInputs[1].value,
-    shortDescription: editableInputs[2].value,
-    rda: editableInputs[3].value,
+    rda: editableInputs[2].value,
+    shortDescription: editableInputs[3].value,
     image: editableInputs[4].value    
   };
 
@@ -828,7 +773,7 @@ async function saveNutrient(row) {
   if (responseSave.name == data.name) { 
     console.log('Nutrient Data updated successfully');
     nutrientObject = responseSave;
-    createCheckmark(row);
+    createCheckmark();
   }
   editableInputs.forEach((input) => {
     input.disabled = true;
@@ -936,7 +881,7 @@ async function saveNutrient(row) {
       });
   }
   
-function activateAddForm() { 
+function activateAddNutrient() { 
   document.querySelector('.modal-overlay').classList.toggle('active');
 }
 
@@ -961,3 +906,81 @@ async function uploadImage(file, nutrientType) {
       throw error;
   }
 }
+function activateAddActiveForm() { 
+  document.querySelector('.modal-form-overlay').classList.toggle('active');
+}
+
+
+
+// ADD NEW FORM
+
+async function addNewActiveForm() {
+  // CREATE MODAL OVERLAY
+  const formOverlay = document.createElement("div");
+  formOverlay.classList.add("modal-form-overlay");
+  document.body.appendChild(formOverlay);
+
+  // CREATE MODAL CONTENT
+  const modalFormContent = document.createElement("div");
+  modalFormContent.classList.add("modal-form-content");
+
+  // ADD CLOSE BUTTON
+  const closeButton = document.createElement("span");
+  closeButton.classList.add("close-form-button");
+  closeButton.textContent = "×";
+
+  // ADD FORM
+  const addActiveFormHTML = `
+    <h3>Add Active Form to Nutrient</h3>
+    <form id="api-form">
+      <label for="name">Active Form Name:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="description">Active Form Description:</label>
+      <input type="text" id="descrption" name="description" required>
+      <button id="submit" type="submit">Create</button>
+    </form>
+    <div id="success-message"></div>
+  `;
+  modalFormContent.innerHTML = addActiveFormHTML;
+  modalFormContent.appendChild(closeButton);
+  formOverlay.appendChild(modalFormContent);
+
+  // FORM SUBMIT
+  const form = modalFormContent.querySelector("#api-form");
+  const successMessage = modalFormContent.querySelector("#success-message");
+
+  form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+
+      const requestData = {
+          formName: formData.get("name"),
+          description: formData.get("description"),
+          nutrientId: nutrientObject.id,
+      };
+      console.log('Request data:', requestData);
+      try {
+          const responseData = await fetchAPI(
+              `activeForms/create`,
+              'POST',
+              requestData,
+              token
+          );
+
+          if (responseData.formName === requestData.formName) {
+              const formId = responseData.id;
+              successMessage.textContent = `Created successfully, ID: ${formId}`; 
+          }
+      } catch (error) {
+          successMessage.textContent = 'Failed to create Active Form.';
+      }
+  });
+
+  // CLOSE MODAL
+  closeButton.addEventListener("click", () => {
+    // overlay.remove();
+    formOverlay.classList.toggle('active');
+  });
+}
+
+
