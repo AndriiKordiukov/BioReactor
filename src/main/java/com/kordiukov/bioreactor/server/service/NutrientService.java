@@ -1,5 +1,6 @@
 package com.kordiukov.bioreactor.server.service;
 
+import com.kordiukov.bioreactor.server.dto.FoodNutrientRelationDTO;
 import com.kordiukov.bioreactor.server.models.FoodNutrientRelation;
 import com.kordiukov.bioreactor.server.models.nutrients.Mineral;
 import com.kordiukov.bioreactor.server.models.nutrients.Vitamin;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -51,6 +53,20 @@ public class NutrientService {
     public Vitamin getVitaminByNameLike(String name) {
         List<Vitamin> vitaminList = vitaminRepository.findAllByNameLike(name);
         return vitaminList.getFirst();
+    }
+
+
+    public Optional<FoodNutrientRelationDTO> getFoodNutrientRelationWithNamesById(Integer id) {
+        List<Map<String, Object>> result = foodNutrientRelationRepository.findFoodNutrientRelationWithNamesById(id);
+
+        return result.stream()
+                .map(row -> new FoodNutrientRelationDTO(
+                        (Integer) row.get("id"),
+                        (String) row.get("food_name"),
+                        (String) row.get("nutrient_name"),
+                        (String) row.get("form_name")
+                ))
+                .findFirst();
     }
 
 }

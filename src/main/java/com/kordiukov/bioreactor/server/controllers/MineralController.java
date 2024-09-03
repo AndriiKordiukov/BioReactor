@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,7 +21,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/minerals")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "127.0.0.1")
+@Validated
+//@CrossOrigin(origins = "127.0.0.1")
 public class MineralController {
 
     private final MineralRepository mineralRepository;
@@ -59,7 +61,7 @@ public class MineralController {
     @PostMapping("/create")
     public Mineral create(@RequestBody Mineral mineral) {
         if (mineralRepository.findByName(mineral.getName()).isPresent()) {
-            return null;
+            return mineralRepository.findByName(mineral.getName()).get();
         } else return mineralRepository.save(mineral);
     }
 

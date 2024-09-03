@@ -1,6 +1,8 @@
 package com.kordiukov.bioreactor.server.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +16,8 @@ public class ActiveForm {
     @Column(name = "form_id", nullable = false)
     private Integer id;
 
+    @NotNull(message = "Form name cannot be null")
+    @Size(min = 1, max = 100, message = "Form name must be between 1 and 100 characters")
     @Column(name = "form_name")
     private String formName;
 

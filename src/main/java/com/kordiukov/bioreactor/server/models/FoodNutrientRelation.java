@@ -31,4 +31,14 @@ public class FoodNutrientRelation {
     @Column(name = "nutrient_id")
     private Integer nutrient;
 
+    public FoodNutrientRelation(Integer nutrient) {
+        this.nutrient = nutrient;
+    }
+
+    public FoodNutrientRelation(Integer forms, Integer food, Integer nutrient) {
+        this.forms = forms;
+        this.food = food;
+        this.nutrient = nutrient;
+    }
+
 }

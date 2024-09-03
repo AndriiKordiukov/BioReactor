@@ -5,6 +5,8 @@ import com.kordiukov.bioreactor.server.models.NutrientInteractions;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.Set;
 
@@ -18,6 +20,8 @@ public abstract class Nutrient {
     private Integer id;
 
     // ... common properties and methods for all nutrient types
+    @NotNull(message = "Nutrient name cannot be null")
+    @Size(min = 1, max = 100, message = "Nutrient name must be between 1 and 100 characters")
     @Column(name="name", nullable = false, unique = true)
     private String name; // Regular Name (Vitamin A)
 

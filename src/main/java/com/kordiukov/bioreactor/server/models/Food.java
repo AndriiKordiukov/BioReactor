@@ -1,6 +1,8 @@
 package com.kordiukov.bioreactor.server.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +22,8 @@ public class Food {
     private Integer id;
 
     @Column(name = "food_name", nullable = false, unique = true)
+    @NotNull(message = "Food name cannot be null")
+    @Size(min = 1, max = 100, message = "Food name must be between 1 and 100 characters")
     private String foodName;
 
     @Column(name = "food_description", columnDefinition = "TEXT")
